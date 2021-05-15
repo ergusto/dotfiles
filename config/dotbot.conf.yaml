@@ -9,8 +9,7 @@
     file: platforms/macos/Brewfile
 
 - create:
-    - ~/.config/tmuxinator
-    - ~/.ssh
+  - ~/.ssh
 
 - link:
     ~/.zshrc:

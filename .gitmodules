@@ -13,3 +13,6 @@
 [submodule "lib/zsh-spaceship-prompt"]
 	path = lib/zsh-spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt.git
+[submodule "lib/dotbot-brewfile"]
+	path = lib/dotbot-brewfile
+	url = https://github.com/sobolevn/dotbot-brewfile.git
