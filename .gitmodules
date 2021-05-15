@@ -1,19 +1,15 @@
-[submodule "vim/config"]
-	path = vim/config
-	url = https://github.com/ergusto/vim.git
-[submodule "lib/dotbot"]
-	path = lib/dotbot
-	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
-[submodule "lib/dotbot-brewfile"]
-	path = lib/dotbot-brewfile
-	url = https://github.com/sobolevn/dotbot-brewfile.git
-[submodule "lib/pure"]
-	path = lib/pure
+[submodule ".vim"]
+	path = .vim
+	url = https://github.com/ergusto/.vim.git
+[submodule ".zsh/pure"]
+	path = .zsh/pure
 	url = https://github.com/sindresorhus/pure.git
-[submodule "lib/zsh-syntax-highlighting"]
-	path = lib/zsh-syntax-highlighting
+[submodule ".zsh/zsh-syntax-highlighting"]
+	path = .zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "lib/spaceship-prompt"]
-	path = lib/spaceship-prompt
+[submodule ".oh-my-zsh/custom/themes/spaceship-prompt"]
+	path = .oh-my-zsh/custom/themes/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt.git
+[submodule "vim-color-atlantis"]
+	path = .vim/plugged/vim-color-atlantis
+	url = https://github.com/ergusto/vim-color-atlantis
