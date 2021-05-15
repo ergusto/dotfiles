@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+for filename in ./*.heic; do
+	name="${filename:2}"
+	name="${name%.*}"
+	magick convert "${name}.heic" "${name}.jpg"
+done

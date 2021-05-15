@@ -1,0 +1,19 @@
+[submodule "vim/config"]
+	path = vim/config
+	url = https://github.com/ergusto/vim.git
+[submodule "lib/dotbot"]
+	path = lib/dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "lib/dotbot-brewfile"]
+	path = lib/dotbot-brewfile
+	url = https://github.com/sobolevn/dotbot-brewfile.git
+[submodule "lib/pure"]
+	path = lib/pure
+	url = https://github.com/sindresorhus/pure.git
+[submodule "lib/zsh-syntax-highlighting"]
+	path = lib/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "lib/spaceship-prompt"]
+	path = lib/spaceship-prompt
+	url = https://github.com/denysdovhan/spaceship-prompt.git

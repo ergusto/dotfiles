@@ -1,0 +1,27 @@
+- defaults:
+    link:
+      relink: false
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+- brewfile:
+    file: platforms/macos/Brewfile
+
+- create:
+    - ~/.config/tmuxinator
+    - ~/.ssh
+
+- link:
+    ~/.zshrc:
+      path: ../zsh/zshrc
+    ~/.zprofile:
+      path: ../zsh/zprofile
+    ~/.global_gitignore:
+      path: ../misc/global_gitignore
+    ~/.hush_login:
+      path: ../misc/hush_login
+    ~/.tmux.conf:
+      path: ../tmux/tmux.conf
+    ~/.vim:
+      path: ../vim/config

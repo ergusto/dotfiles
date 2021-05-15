@@ -1,0 +1,16 @@
+export EDITOR='vim'
+export VISUAL='vim'
+
+typeset -gU cdpath fpath path
+
+# Set the the list of directories that cd searches.
+cdpath=(
+	/Users/ergusto/Work/Kaldor/Repositories/{Client,Product}
+	$cdpath
+)
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+	/usr/local/{bin,sbin}
+	$path
+)

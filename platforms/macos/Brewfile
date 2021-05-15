@@ -1,0 +1,69 @@
+#
+# Taps
+#
+
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "mongodb/brew"
+tap "sass/sass"
+
+#
+# Brews
+#
+
+# Shell
+brew "zsh"
+
+# Languages & versions
+brew "python@3.9"
+brew "php@7.2"
+
+# Tools
+brew "git"
+brew "vim"
+brew "awscli"
+brew "heroku/brew/heroku"
+
+# Linters
+brew "yamllint"
+
+# Tmux
+brew "tmux"
+brew "tmuxinator"
+
+# Databases, web servers etc
+brew "redis", restart_service: true
+brew "mysql", restart_service: true
+brew "nginx", restart_service: true
+brew "dnsmasq", restart_service: true
+
+# nodejs/frontend
+brew "sass/sass/sass"
+
+# Python
+brew "pyenv"
+
+# PHP
+brew "composer"
+brew "wp-cli"
+
+#
+# Casks
+#
+cask "discord"
+cask "docker"
+cask "enpass"
+cask "google-chrome"
+cask "gimp"
+cask" hyperdock"
+cask "logitech-options"
+cask "iterm"
+cask "kap"
+cask "plex"
+cask "slack"
+cask "sublime-text"
+cask "via"
+cask "vivaldi"
+cask "vlc"
+cask "zoom"

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Install  brew dependencies
+brew install tmuxinator
