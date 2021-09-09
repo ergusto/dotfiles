@@ -39,6 +39,7 @@ brew "nginx", restart_service: true
 brew "dnsmasq", restart_service: true
 
 # nodejs/frontend
+brew "fnm"
 brew "sass/sass/sass"
 
 # Python

@@ -1,0 +1,1 @@
+git config --global tag.sort -version:refname

@@ -16,3 +16,9 @@
 [submodule "lib/dotbot-brewfile"]
 	path = lib/dotbot-brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
+[submodule "lib/nord-tmux"]
+	path = lib/nord-tmux
+	url = https://github.com/arcticicestudio/nord-tmux
+[submodule "lib/dotbot-git"]
+	path = lib/dotbot-git
+	url = https://github.com/DrDynamic/dotbot-git.git

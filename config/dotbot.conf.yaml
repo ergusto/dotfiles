@@ -1,26 +1,55 @@
 - defaults:
     link:
       relink: false
+    shell:
+      stdout: true
+      stdin: true
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+  - description: Install submodules
+    command: [git submodule update --init --recursive, Installing submodules]
 
-- brewfile:
-    file: platforms/macos/Brewfile
+  - description: oh-my-zsh
+    command: '[ -z "$ZSH_VERSION" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended" || :'
+
+  - description: Make zsh default shell
+    command: sudo chsh -s /usr/local/bin/zsh ergusto
+
+  - description: Install homebrew
+    command: [/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Install brew]
+
+- git:
+    '~/.tmux/plugins/tpm':
+      url: 'https://github.com/tmux-plugins/tpm'
+      description: Install tpm
 
 - create:
   - ~/.ssh
+  - ~/.oh-my-zsh/custom/plugins
+  - ~/.zsh
+
+- brewfile:
+  file: platforms/macos/Brewfile
+  stdout: true
+  stderr: true
 
 - link:
     ~/.zshrc:
-      path: ../zsh/zshrc
-    ~/.zprofile:
-      path: ../zsh/zprofile
-    ~/.global_gitignore:
-      path: ../misc/global_gitignore
-    ~/.hush_login:
-      path: ../misc/hush_login
-    ~/.tmux.conf:
-      path: ../tmux/tmux.conf
-    ~/.vim:
-      path: ../vim/config
+      path: zsh/zshrc
+      force: true
+    ~/.zprofile: zsh/zprofile
+    ~/.zaliases: zsh/aliases
+    ~/.global_gitignore: misc/global_gitignore
+    ~/.hushlogin: misc/hushlogin
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.tmux/themes/nord-tmux: lib/nord-tmux
+    ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting: lib/zsh-syntax-highlighting
+    ~/.zsh/pure: lib/zsh-pure
+    ~/.vim: vim/config
+    ~/bin: bin
+
+- shell:
+  - description: Install Vim plugins
+    command: [vim +PluginInstall +qall, Installing Vim-Plug plugins]
+  - description: Link subl command
+    command: [ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl, Linking subl command]
