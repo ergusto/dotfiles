@@ -1,6 +1,6 @@
 - defaults:
     link:
-      relink: false
+      relink: true
     shell:
       stdout: true
       stdin: true
@@ -16,7 +16,7 @@
     command: sudo chsh -s /usr/local/bin/zsh ergusto
 
   - description: Install homebrew
-    command: [/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)", Install brew]
+    command: '[ ! -f "`which brew`" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"'
 
 - git:
     '~/.tmux/plugins/tpm':
