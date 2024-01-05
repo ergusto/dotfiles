@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Generate a Brewfile including a comment for each package
+# with a brief explanation of what it does
+
+brew bundle dump --describe

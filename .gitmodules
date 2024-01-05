@@ -1,0 +1,4 @@
+[submodule "lvim/.config/lvim"]
+	path = lvim/.config/lvim
+	url = git@github.com:ergusto/lvim.config.git
+  fetchRecurseSubmodules = true

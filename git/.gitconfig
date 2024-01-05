@@ -1,0 +1,25 @@
+[user]
+  name = Fergus Ruston
+  email = fergus.ruston@gmail.com
+
+[core]
+  editor = nvim
+  pager = delta
+
+[push]
+  # default --set-upstream branch to the same name as local branch
+  default = current
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = true
+  line-numbers = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
