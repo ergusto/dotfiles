@@ -1,6 +1,8 @@
 tap "homebrew/bundle"
 # Fast and simple Node.js version manager
 brew "fnm"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -11,7 +13,5 @@ brew "node"
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
-# Watch files and take action when they change
-brew "watchman"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"
