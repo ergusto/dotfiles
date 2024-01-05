@@ -13,5 +13,7 @@ brew "node"
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"

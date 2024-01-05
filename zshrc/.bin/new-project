@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+PROJECT_NAME=$1
+TMUXINATOR_DIR="~/.config/tmuxinator"
+CONFIG_FILE="$TMUXINATOR_DIR/$PROJECT_NAME.yml"
+PROJECT_DIR="/Users/ergusto/projects/$PROJECT_NAME"
+
+echo $PROJECT_NAME
+
+if [[ ! -d $PROJECT_DIR ]] ; then
+	mkdir -p "$PROJECT_DIR"
+fi
+
+if [[ ! -f $CONFIG_FILE ]] ; then
+	touch $CONFIG_FILE
+	
+	cat <<-EOT > $CONFIG_FILE
+
+	# /Users/ergusto/.config/tmuxinator/scores-on-the-doors.yml
+
+	name: $PROJECT_NAME
+	root: $PROJECT_DIR
+
+	windows:
+		- client:
+			root: $PROJECT_DIR
+			layout: main-vertical
+			# Synchronize all panes of this window, can be enabled before or after the pane commands run.
+			# 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+			# synchronize: after
+			panes:
+				- nvim .
+				- nvim $CONFIG_FILE
+				- #empty, will just run plain bash
+EOT
+
+fi
+
+tmuxinator start $PROJECT_NAME
