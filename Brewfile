@@ -9,11 +9,15 @@ brew "lazygit"
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
 # Manage complex tmux sessions easily
 brew "tmuxinator"
+# UNIX shell (command interpreter)
+brew "zsh"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"
