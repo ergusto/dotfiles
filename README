@@ -15,3 +15,8 @@ xcode-select --install
 git clone https://github.com/ergusto/dotfiles.git ~/.dotfiles
 
 cd ~/.dotfiles && bash ./setup.sh
+
+Stuff to automate
+
+downloading of tpm
+downloading of lunarvim
