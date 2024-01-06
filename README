@@ -18,5 +18,5 @@ cd ~/.dotfiles && bash ./setup.sh
 
 Stuff to automate
 
-downloading of tpm
 downloading of lunarvim
+downloading of npm with fnm

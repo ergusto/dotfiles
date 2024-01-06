@@ -5,6 +5,8 @@ brew "fnm"
 brew "git-delta"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Mac App Store command-line interface
+brew "mas"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications

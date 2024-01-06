@@ -1,0 +1,11 @@
+install_omz() {
+	if [[ ! -f ~/.zshrc ]]; then
+		ZSH=~/.oh-my-zsh ZSH_DISABLE_COMPFIX=true sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+		chmod 744 ~/.oh-my-zsh/oh-my-zsh.sh
+
+    echo "oh-my-zsh installed"
+	else
+		echo "oh-my-zsh already installed"
+	fi
+}
