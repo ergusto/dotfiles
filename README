@@ -4,4 +4,4 @@ installing packages
 defining configs
 running commands
 
-The third step can include installations outside of package managers/brew etc, performing setup steps or setting env variables.
+The third step can include installations outside of package managers/brew etc, or performing setup steps.
