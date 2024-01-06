@@ -5,6 +5,7 @@ files=(
   "prompt",
   "path",
   "aliases",
+  "terminal",
   "overrides",
 
   # programs
