@@ -5,3 +5,13 @@ defining configs
 running commands
 
 The third step can include installations outside of package managers/brew etc, or performing setup steps.
+
+This process guides the structure of this repository. 
+
+macos ->
+
+xcode-select --install
+
+git clone https://github.com/ergusto/dotfiles.git ~/.dotfiles
+
+cd ~/.dotfiles && bash ./setup.sh

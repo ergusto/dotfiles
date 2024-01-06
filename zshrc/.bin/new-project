@@ -3,7 +3,7 @@
 PROJECT_NAME=$1
 TMUXINATOR_DIR="~/.config/tmuxinator"
 CONFIG_FILE="$TMUXINATOR_DIR/$PROJECT_NAME.yml"
-PROJECT_DIR="/Users/ergusto/projects/$PROJECT_NAME"
+PROJECT_DIR="~/projects/$PROJECT_NAME"
 
 echo $PROJECT_NAME
 
@@ -16,7 +16,7 @@ if [[ ! -f $CONFIG_FILE ]] ; then
 	
 	cat <<-EOT > $CONFIG_FILE
 
-	# /Users/ergusto/.config/tmuxinator/scores-on-the-doors.yml
+	# ~/.config/tmuxinator/$PROJECT_NAME.yml
 
 	name: $PROJECT_NAME
 	root: $PROJECT_DIR
