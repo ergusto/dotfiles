@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./utils
+. ./utils
 
 os=$(get_os)
 
