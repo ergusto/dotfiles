@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-. ./utils
+source utils
 
 os=$(get_os)
 
 echo "Installing for $os"
+
+ensure brew
+
+install_omz
