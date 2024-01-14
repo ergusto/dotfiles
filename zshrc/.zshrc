@@ -1,19 +1,18 @@
 files=(
   # shell
-  "oh-my-zsh",
-  "zsh",
-  "prompt",
-  "path",
-  "aliases",
-  "terminal",
-  "overrides",
+  "oh-my-zsh"
+  "prompt"
+  "path"
+  "aliases"
+  "terminal"
+  "overrides"
 
   # programs
-  "fnm",
+  "fnm"
 )
 
-dir="~/.config/zsh"
+dir="$HOME/.config/zsh"
 
-for file in files; do
-  [ -f "$dir/$file" ] && source "$dir/$file"
+for file in "${files[@]}"; do
+  source "$dir/$file"
 done
