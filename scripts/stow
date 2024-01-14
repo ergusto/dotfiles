@@ -1,4 +1,4 @@
 function stow_it() {
   echo "stowing $1"
-  stow --target "/Users/ergusto/" --dir "/Users/ergusto/dotfiles" $1
+  stow --target "$HOME" --dir "$HOME/dotfiles" $1
 }

@@ -14,9 +14,9 @@ xcode-select --install
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-git clone https://github.com/ergusto/dotfiles.git ~/.dotfiles
+git clone https://github.com/ergusto/dotfiles.git ~/dotfiles
 
-cd ~/.dotfiles && bash ./setup.sh
+cd ~/dotfiles && bash ./setup.sh
 
 Stuff to automate
 
