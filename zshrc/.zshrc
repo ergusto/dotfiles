@@ -11,8 +11,6 @@ files=(
   "fnm"
 )
 
-dir="$HOME/.config/zsh"
-
 for file in "${files[@]}"; do
-  source "$dir/$file"
+  source "$HOME/.config/zsh/$file"
 done
