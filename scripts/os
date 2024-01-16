@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 get_os() {
   # Detect the platform (similar to $OSTYPE)
   OS="`uname`"
