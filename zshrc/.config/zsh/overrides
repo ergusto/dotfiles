@@ -1,1 +1,3 @@
+#!/usr/bin/env bash
+
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local

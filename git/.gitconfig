@@ -23,6 +23,3 @@
 
 [submodule]
   recurse = true
-
-[status]
-  short = true

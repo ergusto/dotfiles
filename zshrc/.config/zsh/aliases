@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 alias c=clear
 
 alias t=tmux
