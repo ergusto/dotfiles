@@ -1,2 +1,2 @@
-export PATH="/home/ergusto/.local/share/fnm:$PATH"
+export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
