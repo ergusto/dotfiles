@@ -1,4 +1,4 @@
-files=(
+configs=(
   # shell
   "oh-my-zsh"
   "prompt"
@@ -11,6 +11,6 @@ files=(
   "fnm"
 )
 
-for file in "${files[@]}"; do
-  source "$HOME/.config/zsh/$file"
+for config in "${configs[@]}"; do
+  source "$HOME/.config/zsh/$config"
 done
