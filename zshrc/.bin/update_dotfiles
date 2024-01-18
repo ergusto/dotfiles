@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "Updating dotfiles and submodules"
+pushd "$HOME/dotfiles"
+git pull origin main --recurse-submodules
+popd
