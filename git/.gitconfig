@@ -4,22 +4,10 @@
 
 [core]
   editor = nvim
-  pager = delta
 
 [push]
   # default --set-upstream branch to the same name as local branch
   default = current
-
-[interactive]
-  diffFilter = delta --color-only
-
-[delta]
-  navigate = true
-  light = true
-  line-numbers = true
-
-[diff]
-  colorMoved = default
 
 [submodule]
   recurse = true
