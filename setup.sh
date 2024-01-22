@@ -8,5 +8,5 @@ if [ "$os" == "macos" ]; then
   stow_it git
   stow_it lvim
   stow_it tmux
-  stow_it zshrc
+  stow_it zsh
 fi
