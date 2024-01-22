@@ -1,12 +1,13 @@
 [user]
   name = Fergus Ruston
-  email = fergus.ruston@gmail.com
+  email = fergus.ruston@nearform.com
 
 [core]
   editor = nvim
+  excludesfile = ~/.gitignore
 
 [push]
-  # default --set-upstream branch to the same name as local branch
+  # defaults --set-upstream branch to the same name as local branch
   default = current
 
 [submodule]
