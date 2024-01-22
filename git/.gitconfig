@@ -6,9 +6,17 @@
   editor = nvim
   excludesfile = ~/.gitignore
 
+[pull]
+  rebase = true
+
 [push]
-  # defaults --set-upstream branch to the same name as local branch
-  default = current
+  autoSetupRemote = true
 
 [submodule]
   recurse = true
+
+[init]
+  defaultBranch = main
+
+[commit]
+  verbose = true
