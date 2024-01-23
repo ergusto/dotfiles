@@ -4,6 +4,18 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 
+function dotfiles_changes() {
+  DOTFILES_DIR="$HOME/dotfiles"
+  echo "$DOTFILES_DIR"
+  git --git-dir="$DOTFILES_DIR/.git" status --porcelain
+}
+
+function dotfiles_has_changes_segment() {
+  if [[ $(dotfiles_changes) ]]; then
+    p10k segment '👛' 
+  fi
+}
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
