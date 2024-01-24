@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#
+
 function install_linux() {
   stow_it git
   stow_it lvim
