@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+function install_macos() {
+  stow_it git
+  stow_it lvim
+  stow_it tmux
+  stow_it zsh
+}
