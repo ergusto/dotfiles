@@ -6,8 +6,4 @@ alias t=tmux
 
 alias tm=tmuxinator
 
-alias nvim=lvim
-
-alias v=nvim
-
 alias L=lazygit
