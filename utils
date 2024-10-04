@@ -7,5 +7,3 @@ done
 for file in ./platforms/*; do
   source $file;
 done
-
-os=$(get_os)
