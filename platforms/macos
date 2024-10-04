@@ -2,7 +2,7 @@
 
 function install_macos() {
   stow_it git
-  stow_it lvim
+  stow_it nvim
   stow_it tmux
   stow_it zsh
 }
