@@ -5,6 +5,7 @@
 [core]
   editor = nvim
   excludesfile = ~/.gitignore
+  pager = delta
 
 [pull]
   rebase = true
@@ -20,3 +21,12 @@
 
 [commit]
   verbose = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  interactive = true
+
+[merge]
+  conflictstyle = diff3

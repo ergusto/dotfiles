@@ -8,6 +8,6 @@ DISABLE_UPDATE_PROMPT=true
 ZSH_DISABLE_COMPFIX=true
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git vi-mode mosh zsh-syntax-highlighting)
+plugins=(git vi-mode mosh zsh-syntax-highlighting jsontools)
 
 source $ZSH/oh-my-zsh.sh
