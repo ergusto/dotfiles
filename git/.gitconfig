@@ -1,6 +1,6 @@
 [user]
   name = Fergus Ruston
-  email = fergus.ruston@nearform.com
+  email = fergus.ruston@gmail.com
 
 [core]
   editor = nvim
@@ -30,3 +30,6 @@
 
 [merge]
   conflictstyle = diff3
+
+[credential]
+  helper = /usr/local/share/gcm-core/git-credential-manager
