@@ -1,6 +1,6 @@
 [user]
   name = Fergus Ruston
-  email = fergus.ruston@gmail.com
+  email = fergus.ruston@virginmediao2.co.uk
 
 [core]
   editor = nvim
@@ -33,3 +33,6 @@
 
 [credential]
   helper = /usr/local/share/gcm-core/git-credential-manager
+
+[branch]
+  sort = -committerdate
