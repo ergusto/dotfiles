@@ -7,3 +7,5 @@ alias t=tmux
 alias tm=tmuxinator
 
 alias L=lazygit
+
+alias gb='git checkout $(git branch | fzf)'
