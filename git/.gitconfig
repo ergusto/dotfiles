@@ -30,9 +30,8 @@
 
 [merge]
   conflictstyle = diff3
-
-[credential]
-  helper = /usr/local/share/gcm-core/git-credential-manager
-
 [branch]
   sort = -committerdate
+
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
