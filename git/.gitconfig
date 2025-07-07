@@ -1,6 +1,6 @@
 [user]
   name = Fergus Ruston
-  email = fergus.ruston@virginmediao2.co.uk
+  email = fergus.ruston@gmail.com
 
 [core]
   editor = nvim
@@ -30,6 +30,7 @@
 
 [merge]
   conflictstyle = diff3
+
 [branch]
   sort = -committerdate
 
