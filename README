@@ -23,3 +23,8 @@ Stuff to automate
 downloading of lunarvim
 downloading of npm with fnm
 downloading of zsh-syntax-highlighting
+
+Paths:
+
+~/.zshrc-local is for configs that shouldn't be kept in source control
+~/.bin-local is for scripts that shouldn't be kept in source control

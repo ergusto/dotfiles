@@ -3,3 +3,7 @@
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+if [ -d "$HOME/.bin-local" ]; then
+  export PATH="$HOME/.bin-local:$PATH"
+fi
