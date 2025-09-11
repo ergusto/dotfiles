@@ -2,3 +2,5 @@
 
 node_modules
 CLAUDE.md
+.claude/
+AGENTS.md
