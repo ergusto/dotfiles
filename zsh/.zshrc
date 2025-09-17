@@ -6,9 +6,6 @@ configs=(
   "aliases"
   "terminal"
   "overrides"
-
-  # programs
-  "fnm"
 )
 
 for config in "${configs[@]}"; do
