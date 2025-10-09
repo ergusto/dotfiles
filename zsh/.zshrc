@@ -1,7 +1,7 @@
 configs=(
   # shell
-  "oh-my-zsh"
   "prompt"
+  "oh-my-zsh"
   "path"
   "aliases"
   "terminal"
