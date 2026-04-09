@@ -39,5 +39,11 @@
 [credential]
 	helper = /usr/local/share/gcm-core/git-credential-manager
 
+[includeIf "gitdir:~/Projects/VirginMedia/"]
+    path = ~/.gitconfig-vm
+
+[include]
+  path = ~/.gitconfig-local
+
 [alias]
   undo = reset HEAD^
