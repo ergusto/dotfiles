@@ -1,5 +1,6 @@
 configs=(
   # shell
+  "globals"
   "prompt"
   "oh-my-zsh"
   "path"

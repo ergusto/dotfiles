@@ -12,6 +12,10 @@ alias gb='git checkout $(git branch | fzf)'
 
 alias gs='git status'
 
+alias ls='eza'
+alias ll='eza -la --git --icons'
+alias lt='eza --tree --level=2'
+
 # Remind user to use VOLATA instead of fnm or nvm
 alias fnm="echo '⚠️ fnm is disabled. Use Volta instead.'"
 alias nvm="echo '⚠️ nvm is disabled. Use Volta instead.'"
