@@ -5,6 +5,7 @@ source utils
 os=$(get_os)
 
 logHeading "Installing apps from Brewfile"
+
 brew bundle --file=misc/Brewfile
 
 logHeading "Installing dotfiles for $os"
