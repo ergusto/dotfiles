@@ -37,10 +37,10 @@
   sort = -committerdate
 
 [credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-
-[include]
-  path = ~/.gitconfig-local
+  helper = /usr/local/share/gcm-core/git-credential-manager
 
 [alias]
   undo = reset HEAD^
+
+[include]
+  path = ~/.gitconfig-local
