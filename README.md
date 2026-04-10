@@ -30,5 +30,5 @@ cd ~/dotfiles && bash ./setup.sh
 These paths are for machine-specific config that shouldn't be in source control:
 
 - `~/.zshrc-local`
-- `~/.bin-local`
+- `~/.bin-local/`
 - `~/.gitconfig-local`
