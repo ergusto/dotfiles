@@ -12,6 +12,8 @@ alias gb='git checkout $(git branch | fzf)'
 
 alias gs='git status'
 
+alias cat='bat'
+
 alias ls='eza'
 alias ll='eza -la --git --icons'
 alias lt='eza --tree --level=2'

@@ -10,5 +10,4 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git vi-mode mosh zsh-syntax-highlighting jsontools)
 
-
 source $ZSH/oh-my-zsh.sh

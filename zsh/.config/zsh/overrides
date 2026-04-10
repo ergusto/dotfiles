@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-[ -f ~/.zshrc-local ] && source ~/.zshrc-local
+# Simple way to add machine specific zsh configs
+if [ -f "$HOME/.zshrc-local" ]; then
+  source ~/.zshrc-local
+fi
