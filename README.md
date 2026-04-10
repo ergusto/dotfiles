@@ -9,6 +9,7 @@ Install [Xcode Command Line Tools](https://developer.apple.com/xcode/resources/)
 ```sh
 xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 Then clone and run setup:
