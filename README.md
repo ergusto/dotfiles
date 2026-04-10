@@ -1,6 +1,6 @@
 # dotfiles
 
-Managed with [GNU Stow](https://www.gnu.org/software/stow/). Each top-level directory is a stow package that gets symlinked into `$HOME`.
+Configs are managed with [GNU Stow](https://www.gnu.org/software/stow/) and symlinked into `$HOME`.
 
 ## Install
 
