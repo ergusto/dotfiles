@@ -4,10 +4,10 @@ source utils
 
 os=$(get_os)
 
-echo "Installing apps from Brewfile"
+logHeading "Installing apps from Brewfile"
 brew bundle --file=misc/Brewfile
 
-echo "Installing dotfiles for $os"
+logHeading "Installing dotfiles for $os"
 
 if [ "$os" == "macos" ]; then
   install_macos
