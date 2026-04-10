@@ -4,7 +4,7 @@ Configs are managed with [GNU Stow](https://www.gnu.org/software/stow/) and syml
 
 ## Install
 
-Install [Xcode Command Line Tools](https://developer.apple.com/xcode/resources/) and [Homebrew](https://brew.sh/) if not already installed:
+Install [Xcode Command Line Tools](https://developer.apple.com/xcode/resources/), [Homebrew](https://brew.sh/), and [Oh My Zsh](https://ohmyz.sh/) if not already installed:
 
 ```sh
 xcode-select --install
