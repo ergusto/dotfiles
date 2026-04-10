@@ -3,7 +3,3 @@
 for file in ./scripts/*; do
   source $file;
 done
-
-for file in ./platforms/*; do
-  source $file;
-done
