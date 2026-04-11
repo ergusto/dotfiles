@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-source utils
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+
+source "$DOTFILES/utils"
 
 os=$(get_os)
 

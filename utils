@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-for file in ./scripts/*; do
-  source $file;
+for file in "$DOTFILES"/scripts/*; do
+  source "$file";
 done
