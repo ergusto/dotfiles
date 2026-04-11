@@ -29,3 +29,8 @@ check_deps() {
     exit 1
   fi
 }
+
+install_brewfile() {
+  logHeading "Installing apps from Brewfile"
+  brew bundle --file=misc/Brewfile
+}

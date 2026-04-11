@@ -12,9 +12,7 @@ require_command "brew" "Install Homebrew: https://brew.sh"
 
 check_deps
 
-logHeading "Installing apps from Brewfile"
-
-brew bundle --file=misc/Brewfile
+install_brewfile
 
 logHeading "Installing dotfiles for $os"
 
