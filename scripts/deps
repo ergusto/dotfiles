@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+_deps=()
+
+require_command() {
+  _deps+=("$1|$2")
+}
+
+check_deps() {
+  local missing=0
+
+  logHeading "Checking dependencies"
+
+  for entry in "${_deps[@]}"; do
+    local cmd="${entry%%|*}"
+    local hint="${entry#*|}"
+
+    if command -v "$cmd" > /dev/null 2>&1; then
+      echo "  $cmd found"
+    else
+      echo "  $cmd not found -- $hint"
+      missing=1
+    fi
+  done
+
+  if [ "$missing" -eq 1 ]; then
+    echo ""
+    echo "Install missing dependencies and re-run setup.sh"
+    exit 1
+  fi
+}
