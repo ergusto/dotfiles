@@ -7,6 +7,16 @@
   excludesfile = ~/.gitignore
   pager = delta
 
+[rerere]
+  enabled = true
+
+[fetch]
+  prune = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+
 [pull]
   rebase = true
 
@@ -15,6 +25,9 @@
 
 [submodule]
   recurse = true
+
+[status]
+  showStash = true
 
 [init]
   defaultBranch = main
