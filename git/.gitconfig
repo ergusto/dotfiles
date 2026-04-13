@@ -54,6 +54,7 @@
 
 [alias]
   undo = reset HEAD^
+  wipe = !git reset --hard HEAD && git clean -fd
 
 [include]
   path = ~/.gitconfig-local
