@@ -42,23 +42,3 @@ corepack enable
 ```
 
 This creates shims that read each project's `packageManager` field in `package.json` and run the right version per-project. Don't `npm install -g yarn` or `brew install yarn` alongside this — you'll get `PATH` conflicts.
-
-## Troubleshooting
-
-### `brew bundle` fails with "Could not symlink"
-
-Happens when a file at brew's target path already exists from another source (an old `npm install -g`, a manual download, etc.). Example:
-
-```
-Error: Could not symlink bin/yarn
-Target /opt/homebrew/bin/yarn already exists.
-```
-
-Inspect what's there, and **only if you're sure you want brew to own that path**, overwrite it:
-
-```sh
-brew link --overwrite --dry-run <formula>   # preview
-brew link --overwrite <formula>             # do it
-```
-
-This **replaces the existing file** with brew's symlink. If it's something you installed deliberately via another tool, uninstall that first instead.
