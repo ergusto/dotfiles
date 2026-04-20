@@ -19,6 +19,25 @@ git clone https://github.com/ergusto/dotfiles.git ~/dotfiles
 cd ~/dotfiles && bash ./setup.sh
 ```
 
+`setup.sh` runs interactively by default and asks before each step. Flags for
+non-interactive runs:
+
+```sh
+./setup.sh -y        # run everything, skip prompts
+./setup.sh --brew    # install Brewfile packages only
+./setup.sh --stow    # stow config files only
+./setup.sh --help    # list options
+```
+
+After the first run, `~/.bin/dotfiles` is on your PATH, so subsequent runs
+work from anywhere:
+
+```sh
+dotfiles             # interactive
+dotfiles -y          # run everything
+dotfiles --brew      # brew only
+```
+
 ## What's included
 
 **Configs:** zsh, neovim, tmux, git

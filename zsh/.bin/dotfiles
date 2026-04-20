@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec "${DOTFILES:-$HOME/dotfiles}/setup.sh" "$@"

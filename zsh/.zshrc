@@ -1,5 +1,6 @@
 configs=(
   # shell
+  "dotfiles"
   "globals"
   "prompt"
   "oh-my-zsh"

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+usage() {
+  cat <<EOF
+Usage: setup.sh [options]
+
+Options:
+  --brew         Install Homebrew packages from Brewfile (skips prompt).
+  --stow         Stow config files into \$HOME (skips prompt).
+  -y, --yes      Run every step, skip prompts.
+  -h, --help     Show this help and exit.
+
+With no options, setup.sh runs interactively and asks before each step.
+EOF
+}
+
+parse_args() {
+  RUN_BREW=0
+  RUN_STOW=0
+  INTERACTIVE=1
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --brew) RUN_BREW=1; INTERACTIVE=0 ;;
+      --stow) RUN_STOW=1; INTERACTIVE=0 ;;
+      -y|--yes) RUN_BREW=1; RUN_STOW=1; INTERACTIVE=0 ;;
+      -h|--help) usage; exit 0 ;;
+      *)
+        echo "Unknown option: $1" >&2
+        echo "" >&2
+        usage >&2
+        exit 1
+        ;;
+    esac
+    shift
+  done
+}

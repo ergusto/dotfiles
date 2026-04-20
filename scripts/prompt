@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+have_tty() {
+  ( : > /dev/tty ) 2>/dev/null
+}
+
+prompt_yn() {
+  local question="$1"
+  local reply
+
+  while true; do
+    printf "%s [y/N] " "$question" > /dev/tty
+    IFS= read -r reply < /dev/tty || reply=""
+    case "$reply" in
+      [Yy]|[Yy][Ee][Ss]) return 0 ;;
+      ""|[Nn]|[Nn][Oo]) return 1 ;;
+      *) echo "  please answer y or n" > /dev/tty ;;
+    esac
+  done
+}
+
+choose_steps() {
+  if ! have_tty; then
+    echo "setup.sh needs a terminal for interactive prompts." >&2
+    echo "Pass -y, --brew, or --stow for unattended runs (see --help)." >&2
+    exit 1
+  fi
+
+  if prompt_yn "Install Homebrew packages from Brewfile?"; then
+    RUN_BREW=1
+  fi
+  if prompt_yn "Stow config files into \$HOME?"; then
+    RUN_STOW=1
+  fi
+}
