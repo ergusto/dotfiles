@@ -22,8 +22,8 @@ cd ~/dotfiles && bash ./setup.sh
 `setup.sh` is interactive by default — it asks before installing Brewfile packages and before stowing config files. Pass flags to skip prompts:
 
 - `-y`, `--yes` — run everything
-- `--brew` — install Brewfile packages only
-- `--stow` — stow config files only
+- `-b`, `--brew` — install Brewfile packages only
+- `-s`, `--stow` — stow config files only
 - `-h`, `--help` — list options
 
 After the first run, `~/.bin/dotfiles` is on your PATH, so subsequent runs work from anywhere:

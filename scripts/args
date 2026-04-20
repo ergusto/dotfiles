@@ -5,8 +5,8 @@ usage() {
 Usage: setup.sh [options]
 
 Options:
-  --brew         Install Homebrew packages from Brewfile (skips prompt).
-  --stow         Stow config files into \$HOME (skips prompt).
+  -b, --brew     Install Homebrew packages from Brewfile (skips prompt).
+  -s, --stow     Stow config files into \$HOME (skips prompt).
   -y, --yes      Run every step, skip prompts.
   -h, --help     Show this help and exit.
 
@@ -21,8 +21,8 @@ parse_args() {
 
   while [ $# -gt 0 ]; do
     case "$1" in
-      --brew) RUN_BREW=1; INTERACTIVE=0 ;;
-      --stow) RUN_STOW=1; INTERACTIVE=0 ;;
+      -b|--brew) RUN_BREW=1; INTERACTIVE=0 ;;
+      -s|--stow) RUN_STOW=1; INTERACTIVE=0 ;;
       -y|--yes) RUN_BREW=1; RUN_STOW=1; INTERACTIVE=0 ;;
       -h|--help) usage; exit 0 ;;
       *)
