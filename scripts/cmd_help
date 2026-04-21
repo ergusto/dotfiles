@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+cmd_help() {
+  local topic="${1:-}"
+  case "$topic" in
+    "") top_usage ;;
+    install) install_usage ;;
+    stow)    stow_usage ;;
+    pull)    pull_usage ;;
+    doctor)  doctor_usage ;;
+    help)    top_usage ;;
+    *)
+      echo "No help for: $topic" >&2
+      echo "" >&2
+      top_usage >&2
+      exit 1
+      ;;
+  esac
+}

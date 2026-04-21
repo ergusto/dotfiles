@@ -1,37 +1,43 @@
 #!/usr/bin/env bash
 
-usage() {
+dispatch() {
+  local cmd="${1:-install}"
+  [ $# -gt 0 ] && shift
+
+  case "$cmd" in
+    install)       cmd_install "$@" ;;
+    stow)          cmd_stow "$@" ;;
+    pull)          cmd_pull "$@" ;;
+    doctor)        cmd_doctor "$@" ;;
+    help|-h|--help) cmd_help "$@" ;;
+    --version)     print_version ;;
+    *)
+      echo "Unknown command: $cmd" >&2
+      echo "" >&2
+      top_usage >&2
+      exit 1
+      ;;
+  esac
+}
+
+top_usage() {
   cat <<EOF
-Usage: setup.sh [options]
+Usage: dotfiles <command> [options]
 
-Options:
-  -b, --brew     Install Homebrew packages from Brewfile (skips prompt).
-  -s, --stow     Stow config files into \$HOME (skips prompt).
-  -y, --yes      Run every step, skip prompts.
-  -h, --help     Show this help and exit.
+Commands:
+  install [opts]     First-run setup (brew + stow). Interactive by default.
+  stow <action>      stow update|remove [packages...]
+  pull               git pull --recurse-submodules in \$DOTFILES.
+  doctor             Run diagnostic checks.
+  help [command]     Show this help or per-command help.
+  --version          Show dotfiles git sha.
 
-With no options, setup.sh runs interactively and asks before each step.
+With no command, runs 'install' interactively.
 EOF
 }
 
-parse_args() {
-  RUN_BREW=0
-  RUN_STOW=0
-  INTERACTIVE=1
-
-  while [ $# -gt 0 ]; do
-    case "$1" in
-      -b|--brew) RUN_BREW=1; INTERACTIVE=0 ;;
-      -s|--stow) RUN_STOW=1; INTERACTIVE=0 ;;
-      -y|--yes) RUN_BREW=1; RUN_STOW=1; INTERACTIVE=0 ;;
-      -h|--help) usage; exit 0 ;;
-      *)
-        echo "Unknown option: $1" >&2
-        echo "" >&2
-        usage >&2
-        exit 1
-        ;;
-    esac
-    shift
-  done
+print_version() {
+  local sha
+  sha=$(git -C "$DOTFILES" rev-parse --short HEAD 2>/dev/null)
+  echo "dotfiles ${sha:-unknown}"
 }

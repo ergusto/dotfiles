@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+cmd_pull() {
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -h|--help) pull_usage; exit 0 ;;
+      *)
+        echo "Unknown option: $1" >&2
+        echo "" >&2
+        pull_usage >&2
+        exit 1
+        ;;
+    esac
+    shift
+  done
+
+  require_command "git" "Install git"
+  check_deps
+
+  logHeading "Pulling latest dotfiles"
+  git -C "$DOTFILES" pull --recurse-submodules origin main
+}
+
+pull_usage() {
+  cat <<EOF
+Usage: dotfiles pull
+
+Runs 'git pull --recurse-submodules origin main' in \$DOTFILES.
+EOF
+}

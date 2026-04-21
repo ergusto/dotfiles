@@ -1,9 +1,3 @@
 #!/usr/bin/env bash
 
-function install_linux() {
-  stow_it git
-  stow_it lazygit
-  stow_it nvim
-  stow_it tmux
-  stow_it zsh
-}
+LINUX_PACKAGES=(git lazygit nvim tmux zsh)

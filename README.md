@@ -19,18 +19,26 @@ git clone https://github.com/ergusto/dotfiles.git ~/dotfiles
 cd ~/dotfiles && bash ./setup.sh
 ```
 
-`setup.sh` is interactive by default — it asks before installing Brewfile packages and before stowing config files. Pass flags to skip prompts:
+`setup.sh` is interactive by default — it asks before installing Brewfile packages and before stowing config files.
 
-- `-y`, `--yes` — run everything
-- `-b`, `--brew` — install Brewfile packages only
-- `-s`, `--stow` — stow config files only
-- `-h`, `--help` — list options
+After the first run, `~/.bin/dotfiles` is on your PATH so subsequent invocations work from anywhere.
 
-After the first run, `~/.bin/dotfiles` is on your PATH, so subsequent runs work from anywhere:
+### Commands
 
 ```sh
-dotfiles          # interactive
-dotfiles -y       # run everything
+dotfiles                       # runs 'install' interactively
+dotfiles install -y            # install brew + stow, no prompts
+dotfiles install -b, --brew    # apply Brewfile, skip stow
+dotfiles install -s, --stow    # restow all packages, skip brew
+
+dotfiles stow update           # restow everything
+dotfiles stow update nvim      # restow just nvim
+dotfiles stow remove lazygit   # remove lazygit symlinks
+
+dotfiles pull                  # git pull --recurse-submodules in $DOTFILES
+dotfiles doctor                # diagnostic checks
+dotfiles help [command]        # help
+dotfiles --version             # dotfiles git sha
 ```
 
 ## What's included

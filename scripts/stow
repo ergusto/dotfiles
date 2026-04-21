@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
-function stow_it() {
+stow_it() {
   echo "  stowing $1"
-  stow --target "$HOME" --dir "$DOTFILES" $1
+  stow --target "$HOME" --dir "$DOTFILES" "$1"
+}
+
+restow_it() {
+  echo "  restowing $1"
+  stow -R --target "$HOME" --dir "$DOTFILES" "$1"
+}
+
+unstow_it() {
+  echo "  unstowing $1"
+  stow -D --target "$HOME" --dir "$DOTFILES" "$1"
 }

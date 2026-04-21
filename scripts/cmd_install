@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+cmd_install() {
+  local run_brew=0
+  local run_stow=0
+  local interactive=1
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -b|--brew) run_brew=1; interactive=0 ;;
+      -s|--stow) run_stow=1; interactive=0 ;;
+      -y|--yes) run_brew=1; run_stow=1; interactive=0 ;;
+      -h|--help) install_usage; exit 0 ;;
+      *)
+        echo "Unknown option: $1" >&2
+        echo "" >&2
+        install_usage >&2
+        exit 1
+        ;;
+    esac
+    shift
+  done
+
+  local os
+  os=$(get_os)
+
+  if [ "$interactive" -eq 1 ]; then
+    if ! have_tty; then
+      echo "dotfiles install needs a terminal for interactive prompts." >&2
+      echo "Pass -y, --brew, or --stow for unattended runs (see dotfiles help install)." >&2
+      exit 1
+    fi
+    if prompt_yn "Install Homebrew packages from Brewfile?"; then
+      run_brew=1
+    fi
+    if prompt_yn "Stow config files into \$HOME?"; then
+      run_stow=1
+    fi
+  fi
+
+  if [ "$run_brew" -eq 0 ] && [ "$run_stow" -eq 0 ]; then
+    echo "Nothing to do."
+    return 0
+  fi
+
+  if [ "$os" = "macos" ]; then
+    require_command "git" "Install Xcode CLI Tools: xcode-select --install"
+  fi
+  if [ "$run_brew" -eq 1 ]; then
+    require_command "brew" "Install Homebrew: https://brew.sh"
+  fi
+  if [ "$run_stow" -eq 1 ]; then
+    require_command "stow" "Install GNU Stow: brew install stow"
+  fi
+  check_deps
+
+  if [ "$run_brew" -eq 1 ]; then
+    install_brewfile
+  fi
+
+  if [ "$run_stow" -eq 1 ]; then
+    logHeading "Stowing dotfiles for $os"
+    local pkg
+    while IFS= read -r pkg; do
+      restow_it "$pkg"
+    done < <(platform_packages)
+  fi
+}
+
+install_usage() {
+  cat <<EOF
+Usage: dotfiles install [options]
+
+Run the first-time or full setup. Interactive by default.
+
+Options:
+  -b, --brew     Install Brewfile packages, skip stow.
+  -s, --stow     Restow config files, skip brew.
+  -y, --yes      Run all steps without prompts.
+  -h, --help     Show this help.
+EOF
+}

@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+cmd_doctor() {
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -h|--help) doctor_usage; exit 0 ;;
+      *)
+        echo "Unknown option: $1" >&2
+        echo "" >&2
+        doctor_usage >&2
+        exit 1
+        ;;
+    esac
+    shift
+  done
+
+  local fails=0
+  local warns=0
+  local os
+  os=$(get_os)
+
+  logHeading "Diagnostics"
+
+  _doctor_cmd git  "Install git" || fails=$((fails + 1))
+  _doctor_cmd brew "Install Homebrew: https://brew.sh" || fails=$((fails + 1))
+  _doctor_cmd stow "Install GNU Stow: brew install stow" || fails=$((fails + 1))
+
+  if [ "$os" = "macos" ]; then
+    if xcode-select -p >/dev/null 2>&1; then
+      echo "  ok   xcode-select"
+    else
+      echo "  fail xcode-select missing -- xcode-select --install"
+      fails=$((fails + 1))
+    fi
+  fi
+
+  echo ""
+  if command -v brew >/dev/null 2>&1; then
+    if HOMEBREW_NO_AUTO_UPDATE=1 brew bundle check --file="$DOTFILES/misc/Brewfile" >/dev/null 2>&1; then
+      echo "  ok   Brewfile satisfied"
+    else
+      echo "  warn Brewfile not fully satisfied -- dotfiles install --brew"
+      warns=$((warns + 1))
+    fi
+  fi
+
+  echo ""
+  if command -v stow >/dev/null 2>&1; then
+    local pkg
+    while IFS= read -r pkg; do
+      _doctor_package "$pkg" || fails=$((fails + 1))
+    done < <(platform_packages)
+  fi
+
+  echo ""
+  if command -v git >/dev/null 2>&1 && [ -d "$DOTFILES/.git" ]; then
+    if git -C "$DOTFILES" diff --quiet HEAD -- 2>/dev/null && \
+       [ -z "$(git -C "$DOTFILES" status --porcelain 2>/dev/null)" ]; then
+      echo "  ok   working tree clean"
+    else
+      echo "  warn uncommitted changes in \$DOTFILES"
+      warns=$((warns + 1))
+    fi
+
+    if git -C "$DOTFILES" fetch --quiet 2>/dev/null; then
+      local behind
+      behind=$(git -C "$DOTFILES" rev-list HEAD..origin/main --count 2>/dev/null || echo 0)
+      if [ "${behind:-0}" -gt 0 ]; then
+        echo "  warn $behind commit(s) behind origin/main -- dotfiles pull"
+        warns=$((warns + 1))
+      else
+        echo "  ok   up to date with origin/main"
+      fi
+    else
+      echo "  warn could not fetch from origin"
+      warns=$((warns + 1))
+    fi
+  fi
+
+  echo ""
+  if [ "$fails" -gt 0 ]; then
+    echo "$fails failure(s), $warns warning(s)"
+    exit 1
+  else
+    echo "All checks passed ($warns warning(s))"
+  fi
+}
+
+_doctor_cmd() {
+  local cmd="$1"
+  local hint="$2"
+  if command -v "$cmd" >/dev/null 2>&1; then
+    echo "  ok   $cmd"
+    return 0
+  else
+    echo "  fail $cmd missing -- $hint"
+    return 1
+  fi
+}
+
+_doctor_package() {
+  local pkg="$1"
+  local src="$DOTFILES/$pkg"
+
+  if [ ! -d "$src" ]; then
+    echo "  fail $pkg -- source directory missing"
+    return 1
+  fi
+
+  local output
+  output=$(stow -n -v --target "$HOME" --dir "$DOTFILES" "$pkg" 2>&1)
+  local status=$?
+
+  if [ $status -ne 0 ]; then
+    echo "  fail $pkg -- stow reported errors"
+    echo "$output" | grep -v '^$' | sed 's/^/       /'
+    return 1
+  fi
+
+  local actions
+  actions=$(echo "$output" | grep -E '^(LINK|UNLINK|MKDIR|RMDIR):' || true)
+  if [ -n "$actions" ]; then
+    echo "  fail $pkg -- out of sync, run: dotfiles stow update $pkg"
+    echo "$actions" | sed 's/^/       /'
+    return 1
+  fi
+
+  echo "  ok   $pkg"
+  return 0
+}
+
+doctor_usage() {
+  cat <<EOF
+Usage: dotfiles doctor
+
+Runs read-only diagnostic checks on tools, Brewfile state,
+stow symlinks, and the \$DOTFILES git repo. Exits non-zero on failure.
+EOF
+}

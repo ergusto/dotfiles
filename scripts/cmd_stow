@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+cmd_stow() {
+  local action="${1:-}"
+  [ $# -gt 0 ] && shift
+
+  case "$action" in
+    update) cmd_stow_update "$@" ;;
+    remove) cmd_stow_remove "$@" ;;
+    -h|--help) stow_usage; exit 0 ;;
+    "")
+      stow_usage >&2
+      exit 1
+      ;;
+    *)
+      echo "Unknown stow action: $action" >&2
+      echo "" >&2
+      stow_usage >&2
+      exit 1
+      ;;
+  esac
+}
+
+cmd_stow_update() {
+  require_command "stow" "Install GNU Stow: brew install stow"
+  check_deps
+
+  local packages=("$@")
+  if [ ${#packages[@]} -eq 0 ]; then
+    while IFS= read -r pkg; do
+      packages+=("$pkg")
+    done < <(platform_packages)
+  fi
+
+  logHeading "Restowing ${#packages[@]} package(s)"
+  local pkg
+  for pkg in "${packages[@]}"; do
+    restow_it "$pkg"
+  done
+}
+
+cmd_stow_remove() {
+  require_command "stow" "Install GNU Stow: brew install stow"
+  check_deps
+
+  local packages=("$@")
+  if [ ${#packages[@]} -eq 0 ]; then
+    while IFS= read -r pkg; do
+      packages+=("$pkg")
+    done < <(platform_packages)
+  fi
+
+  logHeading "Unstowing ${#packages[@]} package(s)"
+  local pkg
+  for pkg in "${packages[@]}"; do
+    unstow_it "$pkg"
+  done
+}
+
+stow_usage() {
+  cat <<EOF
+Usage: dotfiles stow <action> [packages...]
+
+Actions:
+  update [pkgs...]   Restow packages (default: all platform packages).
+  remove [pkgs...]   Unstow packages (default: all platform packages).
+
+Examples:
+  dotfiles stow update          # restow everything
+  dotfiles stow update nvim     # restow just nvim
+  dotfiles stow remove lazygit  # remove lazygit symlinks
+EOF
+}

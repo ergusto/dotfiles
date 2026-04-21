@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+platform_packages() {
+  local os
+  os=$(get_os)
+  case "$os" in
+    macos) printf '%s\n' "${MACOS_PACKAGES[@]}" ;;
+    linux) printf '%s\n' "${LINUX_PACKAGES[@]}" ;;
+    *)
+      echo "Unsupported OS: $os" >&2
+      return 1
+      ;;
+  esac
+}
