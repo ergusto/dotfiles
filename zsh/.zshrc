@@ -7,6 +7,7 @@ configs=(
   "path"
   "aliases"
   "terminal"
+  "iterm2"
   "overrides"
 )
 

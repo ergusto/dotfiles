@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+ITERM2_INTEGRATION_URL="https://iterm2.com/shell_integration/zsh"
+
+iterm2_integration_path() {
+  echo "${XDG_DATA_HOME:-$HOME/.local/share}/iterm2/shell_integration.zsh"
+}
+
+install_iterm2_integration() {
+  # iTerm2 is macOS-only; the loader is a no-op elsewhere anyway.
+  [ "$(get_os)" = "macos" ] || return 0
+
+  logHeading "Installing iTerm2 shell integration"
+
+  if ! command -v curl > /dev/null 2>&1; then
+    echo "  curl not found -- skipping"
+    return 0
+  fi
+
+  local dest
+  dest="$(iterm2_integration_path)"
+  mkdir -p "$(dirname "$dest")"
+
+  if curl -fsSL "$ITERM2_INTEGRATION_URL" -o "$dest.tmp"; then
+    mv "$dest.tmp" "$dest"
+    echo "  installed $dest"
+  else
+    rm -f "$dest.tmp"
+    echo "  download failed -- keeping existing copy if present"
+  fi
+}

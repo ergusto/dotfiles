@@ -52,6 +52,16 @@ cmd_doctor() {
     done < <(platform_packages)
   fi
 
+  if [ "$os" = "macos" ]; then
+    echo ""
+    if [ -r "$(iterm2_integration_path)" ]; then
+      echo "  ok   iTerm2 shell integration"
+    else
+      echo "  warn iTerm2 shell integration missing -- dotfiles install -s"
+      warns=$((warns + 1))
+    fi
+  fi
+
   echo ""
   if command -v git >/dev/null 2>&1 && [ -d "$DOTFILES/.git" ]; then
     if git -C "$DOTFILES" diff --quiet HEAD -- 2>/dev/null && \

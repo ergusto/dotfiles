@@ -64,6 +64,8 @@ cmd_install() {
     while IFS= read -r pkg; do
       restow_it "$pkg"
     done < <(platform_packages)
+
+    install_iterm2_integration
   fi
 }
 

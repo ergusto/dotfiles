@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# iTerm2 shell integration: provides iterm2_set_user_var, prompt marks,
+# current-dir reporting, and utilities (imgcat, it2*). The script is downloaded
+# at install time by scripts/iterm2 (kept out of version control). Only load it
+# inside iTerm2 -- it's a no-op in other terminals.
+
+if [[ "$TERM_PROGRAM" == "iTerm.app" || "$LC_TERMINAL" == "iTerm2" ]]; then
+  _iterm2_integration="${XDG_DATA_HOME:-$HOME/.local/share}/iterm2/shell_integration.zsh"
+  [[ -r "$_iterm2_integration" ]] && source "$_iterm2_integration"
+  unset _iterm2_integration
+fi
