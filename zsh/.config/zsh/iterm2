@@ -9,4 +9,19 @@ if [[ "$TERM_PROGRAM" == "iTerm.app" || "$LC_TERMINAL" == "iTerm2" ]]; then
   _iterm2_integration="${XDG_DATA_HOME:-$HOME/.local/share}/iterm2/shell_integration.zsh"
   [[ -r "$_iterm2_integration" ]] && source "$_iterm2_integration"
   unset _iterm2_integration
+
+  # Show the current git repo's name as the iTerm2 session badge; clear it when
+  # outside any repo. Runs only on directory change (chpwd), which doesn't fire
+  # for a shell's initial directory, so we also call it once at load.
+  _iterm2_git_badge() {
+    local root name
+    if root=$(git rev-parse --show-toplevel 2>/dev/null); then
+      name=${root:t}
+    fi
+    printf '\e]1337;SetBadgeFormat=%s\a' "$(printf '%s' "$name" | base64 | tr -d '\n')"
+  }
+
+  autoload -Uz add-zsh-hook
+  add-zsh-hook chpwd _iterm2_git_badge
+  _iterm2_git_badge
 fi
