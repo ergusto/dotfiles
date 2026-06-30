@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Command-line syntax highlighting (Homebrew). Must load last -- after every
+# other widget has been defined (autosuggestions, fzf, vi keybindings) -- so it
+# stays at the end of the config list in ~/.zshrc.
+
+source "${HOMEBREW_PREFIX:-$(brew --prefix)}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>/dev/null

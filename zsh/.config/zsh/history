@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Command history.
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+
+setopt extended_history       # record timestamp + duration for each command
+setopt hist_expire_dups_first # trim duplicates first when HISTFILE is full
+setopt hist_ignore_dups       # don't record a command identical to the previous
+setopt hist_ignore_space      # don't record commands that start with a space
+setopt hist_verify            # expand history (e.g. !!) onto the line, don't run it
+setopt share_history          # share history live across running shells

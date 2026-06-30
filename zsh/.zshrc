@@ -2,13 +2,16 @@ configs=(
   # shell
   "dotfiles"
   "globals"
-  "prompt"
-  "oh-my-zsh"
   "path"
+  "options"
+  "history"
+  "completion"
+  "prompt"
   "aliases"
   "terminal"
   "iterm2"
   "overrides"
+  "syntax"
 )
 
 for config in "${configs[@]}"; do

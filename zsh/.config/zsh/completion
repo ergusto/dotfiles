@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Initialise the completion system, caching the dump so warm starts stay fast.
+
+# Make brew's extra completions visible before compinit scans fpath.
+_brew="${HOMEBREW_PREFIX:-$(brew --prefix)}"
+if [[ -d "$_brew/share/zsh-completions" ]]; then
+  fpath=("$_brew/share/zsh-completions" $fpath)
+fi
+unset _brew
+
+autoload -Uz compinit
+
+_zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
+[[ -d "${_zcompdump:h}" ]] || mkdir -p "${_zcompdump:h}"
+
+# Glob qualifier (N.mh+24): exists, regular file, modified more than 24h ago.
+# Use an array assignment (not [[ ]]) so the glob actually expands.
+_zcompdump_stale=( "$_zcompdump"(N.mh+24) )
+if (( ${#_zcompdump_stale} )) || [[ ! -s "$_zcompdump" ]]; then
+  compinit -d "$_zcompdump"      # stale or missing: full rebuild + security audit
+else
+  compinit -C -d "$_zcompdump"   # fresh: load as-is, skip the audit
+fi
+unset _zcompdump _zcompdump_stale
+
+# Allow bash-style completions to register too.
+autoload -Uz bashcompinit && bashcompinit
+
+# --- completion styling -------------------------------------------------------
+zstyle ':completion:*' menu select                       # arrow-key selection menu
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'  # case-insensitive
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"  # colourise matches
+zstyle ':completion:*' special-dirs true                 # offer . and ..
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"

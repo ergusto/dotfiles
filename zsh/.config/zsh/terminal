@@ -4,17 +4,20 @@ export TERM="xterm-256color"
 
 export EDITOR=nvim
 
-# Enable vi mode
+# vi keybindings: insert mode by default, Esc for normal mode + vi motions.
 bindkey -v
+export KEYTIMEOUT=1   # near-instant mode switch
 
-# Reduce delay switching modes in vi mode
-export KEYTIMEOUT=1
+# Keep a few shell-friendly keys working in vi insert mode. (^r history search
+# is bound below by fzf.)
+bindkey '^?' backward-delete-char   # backspace deletes past the insert point
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 
 # fzf shell integration (Ctrl-R history, Ctrl-T files, Alt-C cd)
 source <(fzf --zsh) 2>/dev/null
 
-# zoxide - smart directory jumping (use 'z' instead of 'cd')
-eval "$(zoxide init zsh)" 2>/dev/null
-
 # zsh-autosuggestions (installed via Homebrew)
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "${HOMEBREW_PREFIX:-$(brew --prefix)}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"

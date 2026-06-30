@@ -45,7 +45,7 @@ dotfiles --version             # dotfiles git sha
 
 **Configs:** zsh, neovim, tmux, git
 
-**Tools:** eza, bat, fzf, zoxide, lazygit, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
+**Tools:** eza, bat, fzf, lazygit, powerlevel10k, zsh-autosuggestions, zsh-syntax-highlighting
 
 ## Local overrides
 

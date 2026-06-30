@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# General interactive shell options.
+
+setopt auto_cd              # `dir` with no command cd's into it
+setopt auto_pushd           # cd pushes the previous dir onto the stack
+setopt pushd_ignore_dups    # keep the dir stack free of duplicates
+setopt interactive_comments # allow `# comments` at an interactive prompt
+
+# Treat only alphanumerics as word characters, so ^w and vi word-motions stop at
+# path separators and punctuation.
+WORDCHARS=''
