@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-LINUX_PACKAGES=(git lazygit nvim tmux zsh)
+LINUX_PACKAGES=(agents git lazygit nvim tmux zsh)
