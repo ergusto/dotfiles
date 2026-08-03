@@ -7,9 +7,8 @@ _brew="${HOMEBREW_PREFIX:-$(brew --prefix)}"
 if [[ -d "$_brew/share/zsh-completions" ]]; then
   fpath=("$_brew/share/zsh-completions" $fpath)
 fi
-unset _brew
 
-autoload -Uz compinit
+autoload -Uz compinit compaudit
 
 _zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 [[ -d "${_zcompdump:h}" ]] || mkdir -p "${_zcompdump:h}"
@@ -18,11 +17,18 @@ _zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 # Use an array assignment (not [[ ]]) so the glob actually expands.
 _zcompdump_stale=( "$_zcompdump"(N.mh+24) )
 if (( ${#_zcompdump_stale} )) || [[ ! -s "$_zcompdump" ]]; then
-  compinit -d "$_zcompdump"      # stale or missing: full rebuild + security audit
+  # Homebrew keeps its whole prefix group-writable so any admin user can write
+  # to it, which compinit's audit flags on every rebuild. Vet the audit here
+  # instead: discount the brew prefix, surface anything else, then rebuild with
+  # -u so a group-writable brew can't block startup on an interactive prompt.
+  _insecure=( ${(f)"$(compaudit 2>/dev/null)"} )
+  _insecure=( ${_insecure:#(|${_brew}*)} )
+  (( ${#_insecure} )) && print -u2 "compinit: insecure directories: ${(j:, :)_insecure}"
+  compinit -u -d "$_zcompdump"
 else
   compinit -C -d "$_zcompdump"   # fresh: load as-is, skip the audit
 fi
-unset _zcompdump _zcompdump_stale
+unset _zcompdump _zcompdump_stale _insecure _brew
 
 # Allow bash-style completions to register too.
 autoload -Uz bashcompinit && bashcompinit
