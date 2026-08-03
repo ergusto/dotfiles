@@ -1,0 +1,4 @@
+# The agents package exists to version agent config, so it has to override the
+# global ~/.gitignore rules for CLAUDE.md and .claude/.
+!agents/.claude/
+!agents/.claude/**
