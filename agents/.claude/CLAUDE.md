@@ -1,3 +1,14 @@
+# Global Execution Protocols
+
+## Multi-Step & Skill State Persistence
+
+When executing multi-step workflows, refactoring sequences, or explicit skills:
+
+1. ALWAYS start Line 1 of every response with:
+   [ACTIVE SKILL: <Skill Name> | STEP: <Current Step / Total Steps>]
+2. Do not insert greetings or blank lines before this header.
+3. Single-turn, simple queries (e.g., quick command checks or quick answers) do not require this header unless requested.
+
 # Coding Style
 
 ## Comments
