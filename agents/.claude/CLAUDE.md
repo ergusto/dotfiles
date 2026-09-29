@@ -1,5 +1,7 @@
 # Global Execution Protocols
 
+More output isn't better. What we want is better experiences for the customer.
+
 ## Multi-Step & Skill State Persistence
 
 When executing multi-step workflows, refactoring sequences, or explicit skills:
