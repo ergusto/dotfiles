@@ -25,3 +25,5 @@ alias fnm="echo '⚠️ fnm is disabled. Use Volta instead.'"
 alias nvm="echo '⚠️ nvm is disabled. Use Volta instead.'"
 
 alias claude='command claude --continue'
+alias claudenew='command claude'
+alias newclaude='command claude'
