@@ -14,3 +14,23 @@ unstow_it() {
   echo "  unstowing $1"
   stow -D --target "$HOME" --dir "$DOTFILES" "$1"
 }
+
+adopt_it() {
+  if [ -n "$(git -C "$DOTFILES" status --porcelain -- "$1")" ]; then
+    echo "  skipping $1: uncommitted changes in $DOTFILES/$1, commit or stash them first" >&2
+    return 1
+  fi
+  echo "  adopting $1"
+  stow -R --adopt --target "$HOME" --dir "$DOTFILES" "$1" || return 1
+  # --adopt moves the existing $HOME files into the repo; restore the repo's
+  # versions so the dotfiles win over whatever was there before.
+  restore_package "$1"
+}
+
+restore_package() {
+  git -C "$DOTFILES" checkout -- "$1"
+  local sub
+  while IFS= read -r sub; do
+    git -C "$DOTFILES/$sub" checkout -- .
+  done < <(git -C "$DOTFILES" config -f .gitmodules --get-regexp '\.path$' | awk '{print $2}' | grep "^$1/")
+}

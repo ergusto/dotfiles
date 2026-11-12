@@ -25,7 +25,15 @@ cmd_stow_update() {
   require_command "stow" "Install GNU Stow: brew install stow"
   check_deps
 
-  local packages=("$@")
+  local stow_fn=restow_it
+  local packages=()
+  local arg
+  for arg in "$@"; do
+    case "$arg" in
+      -a|--adopt) stow_fn=adopt_it ;;
+      *) packages+=("$arg") ;;
+    esac
+  done
   if [ ${#packages[@]} -eq 0 ]; then
     while IFS= read -r pkg; do
       packages+=("$pkg")
@@ -35,7 +43,7 @@ cmd_stow_update() {
   logHeading "Restowing ${#packages[@]} package(s)"
   local pkg
   for pkg in "${packages[@]}"; do
-    restow_it "$pkg"
+    "$stow_fn" "$pkg"
   done
 }
 
@@ -63,11 +71,13 @@ Usage: dotfiles stow <action> [packages...]
 
 Actions:
   update [pkgs...]   Restow packages (default: all platform packages).
+                     -a, --adopt replaces existing files in \$HOME that block stow.
   remove [pkgs...]   Unstow packages (default: all platform packages).
 
 Examples:
   dotfiles stow update          # restow everything
   dotfiles stow update nvim     # restow just nvim
+  dotfiles stow update -a zsh   # restow zsh, replacing existing files
   dotfiles stow remove lazygit  # remove lazygit symlinks
 EOF
 }
